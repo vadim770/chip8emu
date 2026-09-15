@@ -3,15 +3,15 @@
 void Keyboard::init(){
     keyStates = SDL_GetKeyboardState(NULL);
     // setting the default key layout
-    keyMap[SDL_SCANCODE_UP] = KEY_8;
-    keyMap[SDL_SCANCODE_DOWN] = KEY_2;
-    keyMap[SDL_SCANCODE_LEFT] = KEY_4;
-    keyMap[SDL_SCANCODE_RIGHT] = KEY_6;
-    keyMap[SDL_SCANCODE_Q] = KEY_0;
-    keyMap[SDL_SCANCODE_W] = KEY_1;
-    keyMap[SDL_SCANCODE_E] = KEY_3;
-    keyMap[SDL_SCANCODE_R] = KEY_5;
-    keyMap[SDL_SCANCODE_A] = KEY_7;
+    keyMap[SDL_SCANCODE_1] = KEY_0;
+    keyMap[SDL_SCANCODE_2] = KEY_1;
+    keyMap[SDL_SCANCODE_3] = KEY_2;
+    keyMap[SDL_SCANCODE_4] = KEY_3;
+    keyMap[SDL_SCANCODE_Q] = KEY_4;
+    keyMap[SDL_SCANCODE_W] = KEY_5;
+    keyMap[SDL_SCANCODE_E] = KEY_6;
+    keyMap[SDL_SCANCODE_R] = KEY_7;
+    keyMap[SDL_SCANCODE_A] = KEY_8;
     keyMap[SDL_SCANCODE_S] = KEY_9;
     keyMap[SDL_SCANCODE_D] = KEY_A;
     keyMap[SDL_SCANCODE_F] = KEY_B;

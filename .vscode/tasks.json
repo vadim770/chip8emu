@@ -13,9 +13,11 @@
                    "-Wpedantic",
                    "-Wshadow",
                    "-Wconversion",
-                   "-Werror", // Remove/comment this out if you don't want warnings to block compilation
+                   //"-Werror",
                    "-DSDL_MAIN_HANDLED",
                    "${workspaceFolder}/src/*.cpp",
+                   "${workspaceFolder}/src/imgui/*.cpp",
+                   "-I${workspaceFolder}/src/imgui",
                    "-o",
                    "${workspaceFolder}/src/chip8emu.exe",
                    "-lSDL3"

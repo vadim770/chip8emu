@@ -1,3 +1,6 @@
+#ifndef RENDERER_HPP
+#define RENDERER_HPP
+
 #include "../include/Chip8.hpp"
 #include <SDL3/SDL.h>
 
@@ -5,13 +8,21 @@ class Renderer {
 private:
     const Chip8::DisplayGrid& currentScreen;
     SDL_Window* window{ nullptr };
-    SDL_Renderer* renderer {nullptr};
+    SDL_Renderer* renderer{ nullptr };
 
     static constexpr int SCALE {10};
 
 public:
     Renderer(const Chip8::DisplayGrid& chip8Display);
-    bool init();
     ~Renderer();
+
+    bool init();
+    void clear();
     void render();
+    void present();
+
+    SDL_Window* getWindow() const { return window; }
+    SDL_Renderer* getRenderer() const { return renderer; }
 };
+
+#endif // RENDERER_HPP
