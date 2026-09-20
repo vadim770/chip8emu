@@ -7,6 +7,7 @@ public:
     void setKeys(Chip8&);
     void init();
     ~Keyboard();
+    void setKey(Chip8&);
 
 private:
     enum Chip8Key{

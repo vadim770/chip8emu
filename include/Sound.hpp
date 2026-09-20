@@ -6,6 +6,7 @@ class Sound{
         ~Sound();
         void play();
         void stop();
+        void mute();
 
 
     private:
@@ -15,6 +16,8 @@ class Sound{
             .freq = 44100
         };
 
+
+        bool MUTE {false};
         SDL_AudioStream* stream{nullptr};
         static constexpr uint32_t BUFFER_SIZE{512};
         float audioBuffer[BUFFER_SIZE]{0};

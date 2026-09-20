@@ -375,7 +375,8 @@ void Chip8::addVxToI(uint16_t opcode){
 
 void Chip8::setVxRandom(uint16_t opcode){
     uint8_t x = getX(opcode);
-    V[x] = uint8_t(V[x] & distrib(gen));
+    uint8_t nn = getNN(opcode);
+    V[x] = uint8_t(nn & distrib(gen));
 }
 
 uint16_t Chip8::getNNN(uint16_t opcode){
@@ -524,7 +525,8 @@ long long int Chip8::loadROM(std::string_view path) {
     }
 
     file.read(reinterpret_cast<char*>(&memory[0x200]), fileSize);
-
+    loadedRom = true;
+    filepath = path;
     return fileSize;
 }
 
@@ -555,4 +557,10 @@ void Chip8::loadfonts() {
 void Chip8::printV(uint16_t regnum){
     std::cout << "Register V" << regnum << ": ";
     printHex(V[regnum]);
+}
+
+bool Chip8::isLoaded(){
+    if(loadedRom)
+        return true;
+    return false;
 }

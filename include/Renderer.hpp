@@ -10,7 +10,8 @@ private:
     SDL_Window* window{ nullptr };
     SDL_Renderer* renderer{ nullptr };
 
-    static constexpr int SCALE {10};
+    static constexpr int SCALE {20};
+    static constexpr int OFFSET {20};
 
 public:
     Renderer(const Chip8::DisplayGrid& chip8Display);

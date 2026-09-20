@@ -32,6 +32,11 @@ bool Sound::initialize(){
 }
 
 void Sound::play(){
+    if (MUTE) {
+        SDL_ClearAudioStream(stream); 
+        return;
+    }
+
     if (SDL_GetAudioStreamQueued(stream) < static_cast<int>(BUFFER_SIZE * sizeof(float))) {
         SDL_PutAudioStreamData(stream, audioBuffer, sizeof(audioBuffer));
     }
@@ -39,6 +44,10 @@ void Sound::play(){
 
 void Sound::stop(){
     SDL_ClearAudioStream(stream);
+}
+
+void Sound::mute(){
+    MUTE = !MUTE;
 }
 
 Sound::~Sound(){

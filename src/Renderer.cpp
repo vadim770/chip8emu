@@ -5,7 +5,7 @@ Renderer::Renderer(const Chip8::DisplayGrid& chip8Display)
     : currentScreen(chip8Display) {}
 
 bool Renderer::init() {
-    window = SDL_CreateWindow("CHIP-8 Emulator", int(currentScreen[0].size() * SCALE), int(currentScreen.size() * SCALE), 0);
+    window = SDL_CreateWindow("CHIP-8 Emulator", int(currentScreen[0].size() * SCALE), int((currentScreen.size() * SCALE) + OFFSET), 0);
     
     if (window == nullptr) {
         SDL_Log("Window creation failed! SDL error: %s\n", SDL_GetError());
@@ -40,7 +40,7 @@ void Renderer::render() {
     for (size_t y = 0; y < currentScreen.size(); y++) {
         for (size_t x = 0; x < currentScreen[0].size(); x++) {
             if (currentScreen[y][x]) {
-                rect.y = static_cast<float>(y * SCALE);
+                rect.y = static_cast<float>((y * SCALE) + OFFSET);
                 rect.x = static_cast<float>(x * SCALE);
                 SDL_RenderFillRect(renderer, &rect);
             }

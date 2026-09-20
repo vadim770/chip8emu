@@ -72,22 +72,42 @@ void UI::render() {
                        false
                 );
             }
-            if (ImGui::MenuItem("Exit", "Alt+F4")) {
-                SDL_Event quitEvent;
-                SDL_zero(quitEvent);
-                quitEvent.type = SDL_EVENT_QUIT;
-                SDL_PushEvent(&quitEvent);
+            if(ImGui::MenuItem("Reset Rom")){
+                onResetSelected();
+            }
+            if (ImGui::MenuItem("Exit")) {
+                onExitSelected();
             }
             ImGui::EndMenu();
         }
         if (ImGui::BeginMenu("Settings")) {
-            if (ImGui::MenuItem("Key Bindings")) {
-                // Toggle keybindings configuration window
+            if (ImGui::MenuItem("Emulation Speed...")) {
+                showSettingsWindow = !showSettingsWindow;
             }
+
+
+            if(ImGui::MenuItem(muteMenuLabel)){
+                muteSound();
+                muteMenuLabel = "Unmute";
+            }
+
             ImGui::EndMenu();
         }
         ImGui::EndMainMenuBar();
     }
+    // Render the Settings Window if toggled on
+       if (showSettingsWindow) {
+           // ImGui::Begin with a bool* parameter automatically renders a close [X] button
+           if (ImGui::Begin("Settings", &showSettingsWindow, ImGuiWindowFlags_AlwaysAutoResize)) {
+               if (getIPF && setIPF) {
+                   int speed = static_cast<int>(getIPF());
+                   if (ImGui::SliderInt("Instructions/Frame", &speed, 1, 100)) {
+                       setIPF(static_cast<uint64_t>(speed));
+                   }
+               }
+           }
+           ImGui::End();
+       }
 }
 
 void UI::endFrame() {

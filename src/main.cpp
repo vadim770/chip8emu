@@ -10,7 +10,7 @@
 int main() {
     constexpr uint64_t FPS = 60;
     constexpr uint64_t FRAME_DELAY = 1000 / FPS; // ~16 ms
-    uint64_t INSTRUCTIONS_PER_FRAME = 5; // might need to change
+    uint64_t INSTRUCTIONS_PER_FRAME = 3;
     Chip8 chip8;
     chip8.initialize();
 
@@ -30,15 +30,41 @@ int main() {
     }
 
     ui.onROMSelected = [&chip8](const std::string& filepath) {
-       std::cout << "Loading ROM: " << filepath << std::endl;
        chip8.initialize();
        chip8.loadROM(filepath);
    };
+
+   ui.onResetSelected = [&chip8](){
+    if(chip8.isLoaded()){
+        chip8.initialize();
+        chip8.loadROM();
+    }
+   };
+
+   ui.getIPF = [&INSTRUCTIONS_PER_FRAME]() {
+        return INSTRUCTIONS_PER_FRAME;
+   };
+
+   ui.setIPF = [&INSTRUCTIONS_PER_FRAME](uint64_t ipf){
+        INSTRUCTIONS_PER_FRAME = ipf;
+   };
+
+   ui.onExitSelected = [](){
+        SDL_Event quitEvent;
+        SDL_zero(quitEvent);
+        quitEvent.type = SDL_EVENT_QUIT;
+        SDL_PushEvent(&quitEvent);
+   };
+
 
     Sound sound;
     if (!sound.initialize()) {
         return -1;
     }
+
+    ui.muteSound = [&sound](){
+        sound.mute();
+    };
 
     Keyboard keyboard;
     keyboard.init();
@@ -55,10 +81,14 @@ int main() {
             if (e.type == SDL_EVENT_QUIT) {
                 quit = true;
             }
+            if (e.type == SDL_EVENT_WINDOW_MAXIMIZED) {
+                
+            }
         }
         if (quit) {
             break;
         }
+
 
         keyboard.setKeys(chip8);
         for (uint64_t i = 0; i < INSTRUCTIONS_PER_FRAME; ++i) {

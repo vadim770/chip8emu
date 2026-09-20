@@ -13,10 +13,15 @@ class Chip8 {
 private:
     static constexpr int DISPLAY_WIDTH {64};
     static constexpr int DISPLAY_HEIGHT {32};
+    bool loadedRom {false};
+    std::string_view filepath {};
 
 public:
     void initialize();
     long long int loadROM(std::string_view);
+    long long int loadROM(){
+        return loadROM(filepath);
+    }
     void cycle();
     using DisplayGrid = std::array<std::array<bool, DISPLAY_WIDTH>, DISPLAY_HEIGHT>;
     const DisplayGrid& getDisplay() const;
@@ -25,6 +30,8 @@ public:
     void decDelayTimer();
     void decSoundTimer();
     const uint8_t& getSoundTimer() const;
+    bool isLoaded();
+
 
 
 private:
