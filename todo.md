@@ -1,1 +1,0 @@
-in functions where i access memory, maybe there needs to be a check that i dont go in reserved area (not sure i really need to reserve) and check stack pointer
