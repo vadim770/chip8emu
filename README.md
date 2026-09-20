@@ -1,5 +1,7 @@
 # CHIP-8 Emulator
 
+![Demo of the app](assets/chip8em.gif)
+
 ## Getting Started
 
 ### 1. Prerequisites
