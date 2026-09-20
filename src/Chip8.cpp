@@ -9,160 +9,160 @@ void Chip8::decode(uint16_t opcode){
 
     switch(ops1){
         case JUMP_TO_NNN:
-            printCode(ops1);
+            // printCode(ops1);
             jumpToNNN(opcode);
             return;
         case CALL_ROUTINE:
-            printCode(ops1);
+            // printCode(ops1);
             callRoutine(opcode);
             return;
         case IF_VX_EQ_NN:
-            printCode(ops1);
+            // printCode(ops1);
             ifVxEqNN(opcode);
             return;
         case IF_VX_NOT_NN:
-            printCode(ops1);
+            // printCode(ops1);
             ifVxNotNN(opcode);
             return;
         case IF_VX_EQ_VY:
-            printCode(ops1);
+            // printCode(ops1);
             ifVxEqVy(opcode);
             return;
         case SET_VX_TO_NN:
-            printCode(ops1);
+            // printCode(ops1);
             setVxToNN(opcode);
-            printV((opcode & 0x0F00) >> 8);
+            // printV((opcode & 0x0F00) >> 8);
             return;
         case ADD_NN_TO_VX:
-            printCode(ops1);
+            // printCode(ops1);
             addNNtoVx(opcode);
-            printV((opcode & 0x0F00) >> 8);
+            // printV((opcode & 0x0F00) >> 8);
             return;
         
         case IF_VX_NOTEQ_VY:
-            printCode(ops1);
+            // printCode(ops1);
             ifVxNoteqVy(opcode);
             return;
         case SET_I_TO_NNN:
-            printCode(ops1);
+            // printCode(ops1);
             setIToNNN(opcode);
             return;
         case JUMP_TO_NNN_PLUS_V0:
-            printCode(ops1);
+            // printCode(ops1);
             jumpToNNNPlusV0(opcode);
             return;
         case SET_VX_RANDOM:
-            printCode(ops1);
+            // printCode(ops1);
             setVxRandom(opcode);
             return;
         case DRAW:
-            printCode(ops1);
+            // printCode(ops1);
             draw(opcode);
             return;
     }
 
     switch(ops2){
         case SET_VX_TO_VY:
-            printCode(ops2);
+            // printCode(ops2);
             setVxToVy(opcode);
-            printV((opcode & 0x0F00) >> 8);
+            // printV((opcode & 0x0F00) >> 8);
             return;
         case SET_VX_TO_VX_OR_VY:
-            printCode(ops2);
+            // printCode(ops2);
             setVxToVxOrVy(opcode);
-            printV((opcode & 0x0F00) >> 8);
+            // printV((opcode & 0x0F00) >> 8);
             return;
         case SET_VX_TO_VX_AND_VY:
-            printCode(ops2);
+            // printCode(ops2);
             setVxToVxAndVy(opcode);
             return;
         case SET_VX_TO_VX_XOR_VX:
-            printCode(ops2);
+            // printCode(ops2);
             setVxToVxXorVy(opcode);
             return;
         case ADD_VY_TO_VX:
-            printCode(ops2);
+            // printCode(ops2);
             AddVyToVx(opcode);
             return;
         case SUB_VY_FROM_VX:
-            printCode(ops2);
+            // printCode(ops2);
             subVyFromVx(opcode);
             return;
         case SHIFT_VX_RIGHT:
-            printCode(ops2);
+            // printCode(ops2);
             shiftVxRight(opcode);
             return;
         case SUB_VX_FROM_VY:
-            printCode(ops2);
+            // printCode(ops2);
             subVxFromVy(opcode);
             return;
         case SHIFT_VX_LEFT:
-            printCode(ops2);
+            // printCode(ops2);
             shiftVxLeft(opcode);
             return;
     }
 
     switch(ops3){
         case IF_KEY_EQ_VX:
-            printCode(ops3);
+            // printCode(ops3);
             ifKeyEqVx(opcode);
             return;
         case IF_KEY_NOT_EQ_VX:
-            printCode(ops3);
+            // printCode(ops3);
             ifKeyNotEqVx(opcode);
             return;
 
         case SET_VX_TO_DELAY:
-            printCode(ops3);
+            // printCode(ops3);
             setVxToDelay(opcode);
             return;
         case SET_VX_TO_KEY:
-            printCode(ops3);
+            // printCode(ops3);
             setVxToKey(opcode);
             return;
         case SET_DELAY_TO_VX:
-            printCode(ops3);
+            // printCode(ops3);
             setDelayToVx(opcode);
             return;
         case SET_SOUND_TO_VX:
-            printCode(ops3);
+            // printCode(ops3);
             setSoundToVx(opcode);
             return;
         case ADD_VX_TO_I:
-            printCode(ops3);
+            // printCode(ops3);
             addVxToI(opcode);
             return;
         case SET_I_TO_SPRITE_ADDR:
-            printCode(ops3);
+            // printCode(ops3);
             setIToSpriteAddr(opcode);
             return;
         case STORE_BCD:
-            printCode(ops3);
+            // printCode(ops3);
             storeBCD(opcode);
             return;
         case STORE_V0_UPTO_VX:
-            printCode(ops3);
+            // printCode(ops3);
             storeV0UpToVx(opcode);
             return;
         case FILL_V0_UPTO_VX:
-            printCode(ops3);
+            // printCode(ops3);
             fillV0UpToVx(opcode);
             return;
     }
 
     if(opcode == 0x00EE){
-        printCode(0x00EE);
+        // printCode(0x00EE);
         returnFromRoutine();
         return;
     }
 
     if(opcode == 0x00E0){
-        printCode(0x00E0);
+        // printCode(0x00E0);
         clrDisplay();
         return;
     }
 
-    printCode(0x0000);
+    // printCode(0x0000);
 
     
 }
@@ -348,9 +348,9 @@ void Chip8::setVxToNN(uint16_t opcode){
     V[x] = (nn);
 }
 
-void Chip8::printCode(uint16_t code){
-        std::cout << opcode_map.at(code) << '\n';
-}
+// void Chip8::printCode(uint16_t code){
+//         std::cout << opcode_map.at(code) << '\n';
+// }
 
 void Chip8::initialize() {
     clrmem();
@@ -475,18 +475,18 @@ void Chip8::setVxToVy(uint16_t opcode){
     V[x] = V[y];
 }
 
-void Chip8::printHex(uint16_t num){
-        std::cout << "0x"
-            << std::hex << std::uppercase
-            << std::setw(4) << std::setfill('0') 
-            << std::setw(4) << num
-            << std::dec << '\n';
-}
+// void Chip8::printHex(uint16_t num){
+//         std::cout << "0x"
+//             << std::hex << std::uppercase
+//             << std::setw(4) << std::setfill('0') 
+//             << std::setw(4) << num
+//             << std::dec << '\n';
+// }
 
 void Chip8::cycle(){
     
     uint16_t opcode = fetchOpcode();
-    printHex(opcode);
+    // printHex(opcode);
     if(opcode == 0)
         return;
 
@@ -554,10 +554,10 @@ void Chip8::loadfonts() {
     }
 }
 
-void Chip8::printV(uint16_t regnum){
-    std::cout << "Register V" << regnum << ": ";
-    printHex(V[regnum]);
-}
+// void Chip8::printV(uint16_t regnum){
+//     std::cout << "Register V" << regnum << ": ";
+//     printHex(V[regnum]);
+// }
 
 bool Chip8::isLoaded(){
     if(loadedRom)
